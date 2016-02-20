@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>How much will your wedding cost</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7251894/6568952/css/fonts.css" />
     <style>
       body {
@@ -137,6 +138,18 @@
       }
       form {
         padding: 30px;
+      }
+      @media only screen and (max-width: 700px) {
+        form {
+          padding: 10px;
+        }
+        .content {
+          margin: 0;
+          border-radius: 0;
+        }
+        #volsettings .last {
+          right: -10px;
+        }
       }
     </style>
   </head>
