@@ -1,0 +1,136 @@
+<html>
+  <head>
+    <title>How much will your wedding cost</title>
+    <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7251894/6568952/css/fonts.css" />
+    <style>
+      body {
+        background: #f4f4f4;
+        font-family: "Sentinel SSm A", "Sentinel SSm B";
+      }
+      .content {
+        background: white;
+        border-radius: 2%/55%;
+        box-shadow: 0px 0px 50px #dedede;
+        margin: 100px auto;
+        max-width: 500px;
+        padding: 40px;
+      }
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      input[type='number'] {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-shadow: none;
+        display: block;
+        margin-bottom: 30px;
+        outline: none;
+        padding: 15px;
+        width: 50%;
+      }
+      input[type='range']{
+      	-webkit-appearance: none;
+      	background-color: #f4f4f4;
+      	width: 100%;
+        margin-bottom: 0;
+        min-width: 100%;
+      	height:20px;
+      }
+      ::-webkit-slider-thumb,
+      	::-moz-range-thumb,
+      	 ::-ms-thumb {
+      	-webkit-appearance: none;
+      	background-color: red;
+      	width: 10px;
+      	height: 20px;
+      }
+      .numbers .number {
+        box-sizing: border-box;
+        display: inline-block;
+        text-align: center;
+        width: 7.5%;
+      }
+      #volsettings {
+        display: block;
+        margin-bottom: 30px;
+        position: relative;
+      }
+      #volsettings option {
+        box-sizing: border-box;
+        display: inline-block;
+        margin: 0;
+        padding: 0 0 0 5px;
+        text-align: left;
+        width: 8%;
+      }
+      #volsettings .last {
+        position: absolute;
+        text-align: right;
+        right: 0;
+      }
+      #value {
+        border-top: 1px solid #dedede;
+        font-size: 32px;
+        padding: 30px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='content'>
+      <h1>How much will your wedding cost?</h1>
+      <p>The simplest way to determine how much your wedding will <em>actually</em> cost.</p>
+
+      <label name='herCost'>How much did she say it would cost?</label>
+      <input type='number' id='herCost' name='herCost' />
+
+      <label name='range'>How basic is she?</label>
+      <input type="range" min="0" max="11" value="1" id="howBasic" step="1" list="volsettings" />
+      <datalist id="volsettings">
+        <option>0</option>
+      	<option>1</option>
+      	<option>2</option>
+      	<option>3</option>
+      	<option>4</option>
+      	<option>5</option>
+      	<option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option class='last'>11</option>
+      </datalist>
+
+      <div id='value'>
+        #value
+      </div>
+    </div>
+    <script type='text/javascript'>
+
+      window.onload = function () {
+        var howBasicInput = document.getElementById('howBasic');
+        var herCostInput = document.getElementById('herCost');
+        howBasicInput.addEventListener('change', reCalculate, false);
+        herCostInput.addEventListener('keyup', reCalculate, false);
+
+        reCalculate();
+      }
+
+      function reCalculate() {
+        var herCost = document.getElementById('herCost').value;
+        var howBasic = document.getElementById('howBasic').value;
+        var totalBox = document.getElementById('value');
+
+        // Proprietary formula
+        var total = Math.round(((howBasic/3) + 1) * herCost);
+        totalBox.innerHTML = numberWithCommas(total);
+      }
+
+      function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+    </script>
+  </body>
+</html>
