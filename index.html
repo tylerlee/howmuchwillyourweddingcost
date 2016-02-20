@@ -4,11 +4,31 @@
     <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7251894/6568952/css/fonts.css" />
     <style>
       body {
-        background: #f4f4f4;
+        background-color: #f4f4f4;
+        background-size: cover;
         font-family: "Sentinel SSm A", "Sentinel SSm B";
+      }
+      .overlay {
+        background-image: url('bg.jpg');
+        background-size: cover;
+        display: block;
+        left: 0;
+        margin-top: -100px;
+        min-height: 120%;
+        opacity: .2;
+        position: fixed;
+        right: 0;
+        width: 120%;
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+        z-index: -1;
       }
       p {
         color: #888;
+        line-height: 150%;
       }
       .content {
         background: white;
@@ -121,6 +141,7 @@
     </style>
   </head>
   <body>
+    <div class='overlay'></div>
     <div class='content'>
       <h1>How much will your wedding cost?</h1>
       <p>The simplest way to determine how much your wedding will <em>actually</em> cost.</p>
