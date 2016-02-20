@@ -7,13 +7,17 @@
         background: #f4f4f4;
         font-family: "Sentinel SSm A", "Sentinel SSm B";
       }
+      p {
+        color: #888;
+      }
       .content {
         background: white;
         border-radius: 2%/55%;
         box-shadow: 0px 0px 50px #dedede;
         margin: 100px auto;
-        max-width: 500px;
+        max-width: 400px;
         padding: 40px;
+        text-align: center;
       }
       label {
         display: block;
@@ -21,30 +25,64 @@
         margin-bottom: 10px;
       }
       input[type='number'] {
-        border: 1px solid #ccc;
+        border: 0;
+        border-bottom: 3px solid #ccc;
         border-radius: 3px;
         box-shadow: none;
+        font-family: "Sentinel SSm A", "Sentinel SSm B";
         display: block;
-        margin-bottom: 30px;
+        font-size: 18px;
+        margin: 0 auto;
+        margin-bottom: 60px;
         outline: none;
         padding: 15px;
-        width: 50%;
+        text-align: center;
+        width: 100%;
+      }
+      input[type='number']:focus {
+        border-bottom: 3px solid rgba(126,205,114,1);
       }
       input[type='range']{
       	-webkit-appearance: none;
       	background-color: #f4f4f4;
+        border-radius: 50px;
+        border: 1px solid #dedede;
       	width: 100%;
-        margin-bottom: 0;
+        margin-bottom: 10px;
         min-width: 100%;
       	height:20px;
       }
-      ::-webkit-slider-thumb,
-      	::-moz-range-thumb,
-      	 ::-ms-thumb {
-      	-webkit-appearance: none;
-      	background-color: red;
-      	width: 10px;
-      	height: 20px;
+      /* Special styling for WebKit/Blink */
+      input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: 2px solid white;
+        box-shadow: 0px 0px 3px #ccc;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        background: rgba(126,205,114,1);
+        cursor: pointer;
+        margin-top: 0px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+      }
+
+      /* All the same stuff for Firefox */
+      input[type=range]::-moz-range-thumb {
+        border: 2px solid white;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        background: rgba(126,205,114,1);
+        cursor: pointer;
+      }
+
+      /* All the same stuff for IE */
+      input[type=range]::-ms-thumb {
+        border: 2px solid white;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        background: rgba(126,205,114,1);
+        cursor: pointer;
       }
       .numbers .number {
         box-sizing: border-box;
@@ -54,8 +92,9 @@
       }
       #volsettings {
         display: block;
-        margin-bottom: 30px;
+        margin-bottom: 60px;
         position: relative;
+        text-align: left;
       }
       #volsettings option {
         box-sizing: border-box;
@@ -63,7 +102,7 @@
         margin: 0;
         padding: 0 0 0 5px;
         text-align: left;
-        width: 8%;
+        width: 8.5%;
       }
       #volsettings .last {
         position: absolute;
@@ -76,6 +115,9 @@
         padding: 30px;
         text-align: center;
       }
+      form {
+        padding: 30px;
+      }
     </style>
   </head>
   <body>
@@ -83,29 +125,31 @@
       <h1>How much will your wedding cost?</h1>
       <p>The simplest way to determine how much your wedding will <em>actually</em> cost.</p>
 
-      <label name='herCost'>How much did she say it would cost?</label>
-      <input type='number' id='herCost' name='herCost' />
+      <form>
+        <label name='herCost'>How much did she say it would cost?</label>
+        <input type='number' id='herCost' name='herCost' value='16000' />
 
-      <label name='range'>How basic is she?</label>
-      <input type="range" min="0" max="11" value="1" id="howBasic" step="1" list="volsettings" />
-      <datalist id="volsettings">
-        <option>0</option>
-      	<option>1</option>
-      	<option>2</option>
-      	<option>3</option>
-      	<option>4</option>
-      	<option>5</option>
-      	<option>6</option>
-        <option>7</option>
-        <option>8</option>
-        <option>9</option>
-        <option>10</option>
-        <option class='last'>11</option>
-      </datalist>
+        <label name='range'>How basic is she?</label>
+        <input type="range" min="0" max="10" value="1" id="howBasic" step="1" list="volsettings" />
+        <datalist id="volsettings">
+          <option>0</option>
+        	<option>1</option>
+        	<option>2</option>
+        	<option>3</option>
+        	<option>4</option>
+        	<option>5</option>
+        	<option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option class='last'>10</option>
+        </datalist>
 
-      <div id='value'>
-        #value
-      </div>
+        <h3>Best case scenario:</h3>
+        <div id='value'>
+          #value
+        </div>
+      </form>
     </div>
     <script type='text/javascript'>
 
@@ -124,7 +168,7 @@
         var totalBox = document.getElementById('value');
 
         // Proprietary formula
-        var total = Math.round(((howBasic/3) + 1) * herCost);
+        var total = Math.round(((Math.sin(howBasic/4)) + 1) * herCost);
         totalBox.innerHTML = numberWithCommas(total);
       }
 
